@@ -4,14 +4,11 @@ const bodyParser = require("body-parser");
 // const expect = require("chai");
 const socket = require("socket.io");
 const helmet = require("helmet");
-const http = require("http");
 const nocache = require("nocache");
 const fccTestingRoutes = require("./routes/fcctesting.js");
 const runner = require("./test-runner.js");
 
 const app = express();
-// const server = http.createServer(app);
-// const io = socket.listen(server);
 
 app.use(
   helmet({
