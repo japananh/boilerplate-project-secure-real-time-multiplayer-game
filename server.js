@@ -13,12 +13,6 @@ const app = express();
 const server = http.createServer(app);
 socket.listen(server);
 
-app.use("/public", express.static(process.cwd() + "/public"));
-app.use("/assets", express.static(process.cwd() + "/assets"));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(
   helmet({
     noSniff: true,
@@ -30,6 +24,12 @@ app.use(
 );
 
 app.use(nocache());
+
+app.use("/public", express.static(process.cwd() + "/public"));
+app.use("/assets", express.static(process.cwd() + "/assets"));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Index page (static HTML)
 app.route("/").get(function (req, res) {
