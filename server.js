@@ -19,44 +19,17 @@ app.use("/assets", express.static(process.cwd() + "/assets"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(nocache());
-
 app.use(
   helmet({
-    contentSecurityPolicy: {
-      directives: {
-        styleSrc: [
-          "'self'",
-          "'unsafe-inline'",
-          "http://localhost:3000",
-          "https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap",
-          "https://real-time-multiplayer-game.herokuapp.com",
-        ],
-        scriptSrc: [
-          "'self'",
-          "'unsafe-inline'",
-          "http://localhost:3000",
-          "https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap",
-          "https://real-time-multiplayer-game.herokuapp.com/",
-        ],
-      },
-    },
+    noSniff: true,
     xssFilter: true,
-    hidePoweredBy: false,
-    nocache: true,
-    frameguard: {
-      action: "sameorigin",
-    },
-    referrerPolicy: {
-      policy: "same-origin",
+    hidePoweredBy: {
+      setTo: "PHP 7.4.3",
     },
   })
 );
 
-app.use(function (_req, res, next) {
-  res.setHeader("X-Powered-By", "PHP 7.4.3");
-  next();
-});
+app.use(nocache());
 
 // Index page (static HTML)
 app.route("/").get(function (req, res) {
