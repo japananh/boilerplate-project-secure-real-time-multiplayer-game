@@ -1,10 +1,10 @@
 require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
-// const expect = require("chai");
 const socket = require("socket.io");
 const helmet = require("helmet");
 const nocache = require("nocache");
+const cors = require("cors");
 const fccTestingRoutes = require("./routes/fcctesting.js");
 const runner = require("./test-runner.js");
 
@@ -14,6 +14,7 @@ app.use(
   helmet({
     noSniff: true,
     xssFilter: true,
+    nocache: true,
     hidePoweredBy: {
       setTo: "PHP 7.4.3",
     },
