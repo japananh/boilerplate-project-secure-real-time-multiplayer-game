@@ -22,6 +22,8 @@ app.use(
 
 app.use(nocache());
 
+app.use(cors({ origin: "*" })); //For FCC testing purposes only
+
 app.use("/public", express.static(process.cwd() + "/public"));
 app.use("/assets", express.static(process.cwd() + "/assets"));
 
